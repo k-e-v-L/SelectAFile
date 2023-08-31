@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MyFrame extends JFrame implements ActionListener {
 
@@ -21,6 +22,15 @@ public class MyFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==button) {
             JFileChooser fileChooser = new JFileChooser();
+
+            fileChooser.setCurrentDirectory(new File(".")); // "." goes to project folder
+
+            //int response = (fileChooser.showOpenDialog(null)); //This will select file to open
+            int response = (fileChooser.showSaveDialog(null)); //select file to save
+            if (response == JFileChooser.APPROVE_OPTION) {
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                System.out.println(file); //prints out the file location
+            }
         }
 
     }
